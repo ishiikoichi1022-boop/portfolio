@@ -1,0 +1,41 @@
+@use "../../../styles/mixin.scss" as *;
+@use "../../../styles/breakpoints" as *;
+
+.hero {
+    padding-block: var(--space-2xl);
+}
+
+.inner {
+    @include container;
+}
+
+.title {
+    font-size: var(--fs-hero);
+    line-height: var(--lh-hero);
+    font-weight: 500;
+}
+
+.line {
+    display: block;
+}
+
+.emphasis {
+    font-style: normal;
+    color: var(--color-emphasis);
+}
+
+.lead {
+    margin-top: var(--space-md);
+    color: var(--color-text-sub);
+}
+
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: var(--space-xl);
+
+    @include mobile {
+        display: grid;
+        justify-content: stretch;
+    }
+}

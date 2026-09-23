@@ -1,14 +1,9 @@
-import Button from "@/components/Button/Button"
-import Tag from "@/components/Tag/Tag"
+import Hero from "./_components/Hero/Hero";
 
 export default function Home() {
   return (
     <main>
-      <h1>Portfolio</h1>
-      <Button href="/about">Aboutを見る</Button>
-      <Button variant="outline">アドレスをコピー</Button>
-      <Tag>Next.js</Tag>
-      <Tag>TypeScript</Tag>
+      <Hero />
     </main>
   );
 }
