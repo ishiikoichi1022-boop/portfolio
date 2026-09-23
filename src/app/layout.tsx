@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, M_PLUS_Rounded_1c } from "next/font/google";
 import "./globals.scss";
+import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer"
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -23,7 +25,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="ja" className={`${spaceGrotesk.variable} ${mPlusRounded.variable}`}>
-      <body>{children}</body>
+      <body>
+        <Header />
+        {children}
+        <Footer />
+        </body>
     </html>
   );
 }

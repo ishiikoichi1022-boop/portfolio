@@ -1,0 +1,25 @@
+@use "../../styles/mixin.scss" as *;
+
+.footer {
+    margin-top: var(--space-2xl);
+    border-top: var(--border) solid var(--color-text);
+}
+
+.inner {
+    @include container;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 6rem;
+}
+
+.logo {
+    font-family: var(--font-en);
+    font-size: var(--fs-md);
+}
+
+.copyright {
+    font-family: var(--font-en);
+    font-size: var(--fs-sm);
+    color: var(--color-text-sub);
+}

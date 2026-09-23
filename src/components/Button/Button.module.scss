@@ -1,0 +1,29 @@
+.button {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    padding-block: 0.85rem;
+    padding-inline: var(--space-sm);
+    border: var(--border) solid transparent;
+    border-radius: var(--radius);
+    font-family: var(--font-ja);
+    font-size: var(--fs-md);
+    line-height: 1.2;
+    cursor: pointer;
+    transition: opacity var(--duration) var(--ease);
+}
+
+.button:hover {
+    opacity: 0.85;
+}
+
+.fill {
+    background-color: var(--color-action);
+    color: var(--color-bg);
+}
+
+.outline {
+    color: var(--color-text);
+    background-color: transparent;
+    border-color: var(--color-text);
+}
