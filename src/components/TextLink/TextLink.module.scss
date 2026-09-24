@@ -1,0 +1,8 @@
+.link {
+    color: var(--color-emphasis);
+    text-underline-offset: 0.2em;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}

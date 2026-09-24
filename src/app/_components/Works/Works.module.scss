@@ -9,3 +9,9 @@
     margin-top: var(--space-lg);
     max-width: var(--width-text);
 }
+
+.list {
+    @include container;
+    display: grid;
+    gap: var(--space-2xl);
+}

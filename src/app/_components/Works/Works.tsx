@@ -1,4 +1,6 @@
+import { works } from "@/data/works";
 import SectionHeading from "../SectionHeading/SectionHeading";
+import WorkItem from "./WorkItem";
 import styles from "./Works.module.scss";
 
 export default function Works() {
@@ -8,7 +10,11 @@ export default function Works() {
                 <SectionHeading number="01">Works</SectionHeading>
                 <p className={styles.lead}>私が個人で制作した作品一覧です。</p>
             </div>
-            {/* 作品エリア */}
+            <div className={styles.list}>
+                {works.map((work, index) => (
+                    <WorkItem key={work.slug} work={work} index={index} total={works.length} />
+                ))}
+            </div>
         </section>
-    )
+    );
 }

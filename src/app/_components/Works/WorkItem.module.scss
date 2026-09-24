@@ -1,0 +1,50 @@
+@use "breakpoints" as *;
+
+.item {
+    display: grid;
+    grid-template-columns: 588fr 452fr;
+    align-items: center;
+    column-gap: var(--space-md);
+
+    @include mobile {
+        grid-template-columns: 1fr;
+        row-gap: var(--space-sm);
+    }
+}
+
+.image {
+    aspect-ratio: 16 / 10;
+    background-color: var(--color-bg-sub);
+}
+
+.body {
+    display: grid;
+    justify-items: start;
+    gap: var(--space-xs);
+}
+
+.count {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    font-family: var(--font-en);
+    font-size: var(--fs-sm);
+    font-weight: 500;
+}
+
+.countLabel {
+    font-size: var(--fs-md);
+}
+
+.title {
+    font-size: var(--fs-xl);
+    line-height: var(--lh-heading);
+    font-weight: 500;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2xs);
+    list-style: none;
+}
