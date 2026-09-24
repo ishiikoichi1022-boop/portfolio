@@ -1,0 +1,13 @@
+.heading {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-family: var(--font-en);
+    font-size: var(--fs-xl);
+    line-height: var(--lh-heading);
+    font-weight: 500;
+}
+
+.number {
+    font-size: var(--fs-md);
+}

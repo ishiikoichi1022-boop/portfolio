@@ -1,8 +1,9 @@
-@use "../styles/tokens";
+@use "tokens";
 
 /* ブラウザの標準文字サイズ1remを使用することで、ユーザー側の文字設定をそのまま活かす */
 html {
   font-size: clamp(1rem, 0.9rem + 0.4vw, 1.375rem);
+  scroll-padding-top: calc(var(--height-header) + var(--border));
 }
 
 *,
