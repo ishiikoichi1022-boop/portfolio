@@ -1,0 +1,54 @@
+@use "mixin" as *;
+@use "breakpoints" as *;
+
+.intro {
+    @include container;
+    padding-top: var(--space-2xl);
+}
+
+.lead {
+    margin-top: var(--space-lg);
+    max-width: var(--width-text);
+}
+
+.block {
+    margin-top: var(--space-lg);
+}
+
+.address {
+    /* アドレスが表示されるまでの間も1行分の高さを確保 */
+    min-height: 1lh;
+    display: inline-block;
+    font-family: var(--font-en);
+    font-size: min(var(--fs-lg), 6.5vw);
+    line-height: var(--lh-heading);
+    color: var(--color-emphasis);
+
+    &:hover {
+        border-bottom: var(--border) solid currentColor;
+    } 
+}
+
+.actions {
+    margin-top: var(--space-sm);
+
+    @include mobile {
+        display: grid;
+    }
+}
+
+.note {
+    margin-top: var(--space-md);
+    font-size: var(--fs-sm);
+    color: var(--color-text-sub);
+}
+
+/* 見た目には出さず、読み上げソフトだけに伝える */
+.srOnly {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
