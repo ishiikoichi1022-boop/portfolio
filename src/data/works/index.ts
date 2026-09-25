@@ -1,4 +1,4 @@
-import { ta1sh1 } from "./ta1sh1.ts";
+import { ta1sh1 } from "./ta1sh1";
 import { portfolio } from "./portfolio";
 
 export type { Work, WorkImage, ApproachItem } from "./type";

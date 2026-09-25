@@ -1,0 +1,15 @@
+@use "mixin" as *;
+
+.intro {
+    @include container;
+    padding-block: var(--space-2xl);
+}
+
+.lead {
+    margin-top: var(--space-lg);
+    max-width: var(--width-text);
+}
+
+.textlink {
+    margin-top: var(--space-sm);
+}
