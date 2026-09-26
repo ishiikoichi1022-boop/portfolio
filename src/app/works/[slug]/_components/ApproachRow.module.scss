@@ -1,0 +1,43 @@
+@use "breakpoints" as *;
+
+.row {
+    display: grid;
+    gap: var(--space-xs);
+
+    /* 2項目目以降は、上に区切り線を引く */
+    & + & {
+        margin-top: var(--space-lg);
+        padding-top: var(--space-lg);
+        border-top: var(--border) solid var(--color-text-sub);
+    }
+}
+
+.side {
+    grid-template-columns: 60fr 46fr;
+    align-items: start;
+    column-gap: var(--space-xs);
+
+    @include mobile {
+        grid-template-columns: 1fr;
+    }
+}
+
+.heading {
+    font-size: var(--fs-md);
+    font-weight: 500;
+}
+
+.body {
+    max-width: var(--width-text);
+}
+
+.images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xs);
+}
+
+.image {
+    aspect-ratio: 16 / 10;
+    background-color: var(--color-bg-sub);
+}

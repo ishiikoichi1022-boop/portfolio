@@ -1,7 +1,17 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getWork, works } from "@/data/works";
+import { JetBrains_Mono } from "next/font/google";
+import BlockHeading from "@/components/BlockHeading/BlockHeading";
+import ApproachRow from "./_components/ApproachRow";
 import styles from "./page.module.scss";
+
+/** コードブロック専用。このページでしか使わない */
+const jetbrainsMono = JetBrains_Mono({
+    variable: "--font-jetbrains-mono",
+    subsets: ["latin"],
+    display: "swap",
+});
 
 /** works にない slug は 404 にする */
 export const dynamicParams = false;
@@ -66,7 +76,27 @@ export default async function WorkPage(props: PageProps<"/works/[slug]">) {
                 {/** 実画像は 10/10 に next/image へ差し替える */}
                 <div className={styles.mainImage} aria-hidden="true" />
 
-                {/** Challenge / Approach / Implementation は次の手順で追加 */}
+                <section className={styles.block}>
+                    <BlockHeading en="Challenge" ja="課題・目的" />
+                    <p className={styles.text}>{work.challenge}</p>
+                </section>
+
+                <section className={styles.block}>
+                    <BlockHeading en="Approach" ja="工夫した点" />
+                    <div className={styles.approach}>
+                        {work.approach.map((item) => (
+                            <ApproachRow key={item.heading} item={item} />
+                        ))}
+                    </div>
+                </section>
+
+                <section className={styles.block}>
+                    <BlockHeading en="Implementation" ja="実装のポイント" />
+                    <pre className={`${styles.code} ${jetbrainsMono.variable}`} tabIndex={0}>
+                        <code>{work.implementation.code}</code>
+                    </pre>
+                    <p className={styles.caption}>{work.implementation.caption}</p>
+                </section>
             </article>
         </main>
     );

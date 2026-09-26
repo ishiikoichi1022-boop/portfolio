@@ -32,3 +32,42 @@
     aspect-ratio: 16 / 10;
     background-color: var(--color-bg-sub);
 }
+
+.block {
+    margin-top: var(--space-2xl);
+}
+
+.text,
+.approach,
+.code {
+    margin-top: var(--space-lg);
+}
+
+.text {
+    max-width: var(--width-text);
+}
+
+.code {
+    overflow-x: auto;
+    padding: var(--space-sm);
+    border-radius: var(--radius);
+    background-color: var(--color-bg-sub);
+    font-family: var(--font-jetbrains-mono, monospace);
+    font-size: var(--fs-sm);
+    line-height: 1.7;
+    tab-size: 2;
+    --scrollbar-thumb: var(--color-text-sub);
+    --scrollbar-track: var(--color-bg-sub);
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+    scrollbar-width: thin;
+
+    & code {
+        font-family: inherit;
+    }
+}
+
+.caption {
+    margin-top: var(--space-xs);
+    font-size: var(--fs-sm);
+    color: var(--color-text-sub);
+}

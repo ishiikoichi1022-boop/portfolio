@@ -1,0 +1,16 @@
+.heading {
+    display: grid;
+    gap: var(--space-3xs);
+    font-weight: 500;
+}
+
+.en {
+    font-family: var(--font-en);
+    font-size: var(--fs-lg);
+    line-height: var(--lh-heading);
+}
+
+.ja {
+    font-size: var(--fs-sm);
+    color: var(--color-text-sub);
+}
