@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Button from "@/components/Button/Button";
+import ButtonGroup from "@/components/ButtonGroup/ButtonGroup";
 import { getNextWork, getWork, works } from "@/data/works";
 import { JetBrains_Mono } from "next/font/google";
 import BlockHeading from "@/components/BlockHeading/BlockHeading";
@@ -100,12 +101,12 @@ export default async function WorkPage(props: PageProps<"/works/[slug]">) {
                     <p className={styles.caption}>{work.implementation.caption}</p>
                 </section>
                 
-                <nav className={styles.nav} aria-label="作品の移動">
+                <ButtonGroup label="作品の移動" className={styles.nav}>
                     {nextWork && (
                         <Button href={`/works/${nextWork.slug}`}>次の作品を見る</Button>
                     )}
                     <Button href="/#works" variant="outline">Works一覧に戻る</Button>
-                </nav>
+                </ButtonGroup>
             </article>
         </main>
     );

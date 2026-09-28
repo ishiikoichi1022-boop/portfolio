@@ -75,13 +75,4 @@
 
 .nav {
     margin-top: var(--space-2xl);
-    display: inline-grid;
-    grid-auto-flow: column;
-    grid-auto-columns: 1fr;
-    gap: var(--space-xs);
-
-    @include mobile {
-        display: grid;
-        grid-auto-flow: row;
-    }
 }

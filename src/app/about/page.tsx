@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import BlockHeading from "@/components/BlockHeading/BlockHeading";
+import Button from "@/components/Button/Button"
+import ButtonGroup from "@/components/ButtonGroup/ButtonGroup";
 import { interests, skills, story, values } from "@/data/about";
 import styles from "./page.module.scss";
 
@@ -61,6 +63,17 @@ export default function AboutPage() {
                         ))}
                     </div>
                 </section>
+
+                <div className={styles.cta}>
+                    <p>
+                        実際に手掛けた制作物はWorksから、<br />
+                        採用に関するご連絡やご相談はお問い合わせからお気軽にどうぞ。
+                    </p>
+                    <ButtonGroup label="次に見るページ" className={styles.ctaButtons}>
+                        <Button href="/#works">Worksを見る</Button>
+                        <Button href="/#contact" variant="outline">お問い合わせ</Button>
+                    </ButtonGroup>
+                </div>
 
             </article>
         </main>
