@@ -1,4 +1,5 @@
 @use "mixin" as *;
+@use "breakpoints" as *;
 
 .article {
     @include container;
@@ -70,4 +71,17 @@
     margin-top: var(--space-xs);
     font-size: var(--fs-sm);
     color: var(--color-text-sub);
+}
+
+.nav {
+    margin-top: var(--space-2xl);
+    display: inline-grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    gap: var(--space-xs);
+
+    @include mobile {
+        display: grid;
+        grid-auto-flow: row;
+    }
 }

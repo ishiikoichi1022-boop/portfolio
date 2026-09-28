@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getWork, works } from "@/data/works";
+import Button from "@/components/Button/Button";
+import { getNextWork, getWork, works } from "@/data/works";
 import { JetBrains_Mono } from "next/font/google";
 import BlockHeading from "@/components/BlockHeading/BlockHeading";
 import ApproachRow from "./_components/ApproachRow";
@@ -38,6 +39,7 @@ export default async function WorkPage(props: PageProps<"/works/[slug]">) {
     const { slug } = await props.params;
     const work = getWork(slug);
     if (!work) notFound();
+    const nextWork = getNextWork(slug);
 
     return (
         <main>
@@ -97,6 +99,13 @@ export default async function WorkPage(props: PageProps<"/works/[slug]">) {
                     </pre>
                     <p className={styles.caption}>{work.implementation.caption}</p>
                 </section>
+                
+                <nav className={styles.nav} aria-label="作品の移動">
+                    {nextWork && (
+                        <Button href={`/works/${nextWork.slug}`}>次の作品を見る</Button>
+                    )}
+                    <Button href="/#works" variant="outline">Works一覧に戻る</Button>
+                </nav>
             </article>
         </main>
     );
