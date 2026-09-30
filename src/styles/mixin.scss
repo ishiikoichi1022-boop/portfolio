@@ -2,3 +2,17 @@
     width: min(var(--width-content), 100% - var(--width-gutter) * 2);
     margin-inline: auto;
 }
+
+/* 見た目と余白はそのままに、押せる範囲だけを上下に広げて高さを確保する */
+@mixin tap-area {
+    position: relative;
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset-inline: 0;
+        top: 50%;
+        height: max(100%, var(--tap-min));
+        translate: 0 -50%;
+    }
+}

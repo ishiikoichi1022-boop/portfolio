@@ -1,4 +1,7 @@
+@use "mixin" as *;
+
 .link {
+    @include tap-area;
     color: var(--color-emphasis);
     text-underline-offset: 0.2em;
 

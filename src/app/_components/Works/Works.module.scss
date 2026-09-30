@@ -1,4 +1,5 @@
 @use "mixin" as *;
+@use "breakpoints" as *;
 
 .intro {
     @include container;
@@ -14,4 +15,8 @@
     @include container;
     display: grid;
     gap: var(--space-2xl);
+
+    @include mobile {
+        gap: var(--space-xl);
+    }
 }

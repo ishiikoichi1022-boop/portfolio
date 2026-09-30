@@ -18,6 +18,7 @@
 }
 
 .logo {
+    @include tap-area;
     font-family: var(--font-en);
     font-size: var(--fs-md);
     line-height: 1;

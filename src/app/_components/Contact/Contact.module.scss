@@ -24,6 +24,10 @@
     line-height: var(--lh-heading);
     color: var(--color-emphasis);
 
+    a {
+        @include tap-area;
+    }
+
     &:hover {
         border-bottom: var(--border) solid currentColor;
     } 
