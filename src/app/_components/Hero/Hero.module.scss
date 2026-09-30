@@ -2,11 +2,15 @@
 @use "breakpoints" as *;
 
 .hero {
-    padding-top: var(--space-2xl);
+    display: grid;
+    grid-template-rows: minmax(var(--space-xl), 1fr) auto 1fr;
+    row-gap: var(--space-lg);
+    min-height: calc(100svh - var(--height-header) - var(--border))
 }
 
 .inner {
     @include container;
+    grid-row: 2;
 }
 
 .title {
@@ -22,6 +26,18 @@
 .emphasis {
     font-style: normal;
     color: var(--color-emphasis);
+    /* 「こうしたい」だけ少し遅れて浮かび上がらせる */
+    animation: emphasis-in 0.8s var(--ease) 0.4s both;
+
+    @media (prefers-reduced-motion: reduce) {
+        animation: none;
+    }
+}
+
+@keyframes emphasis-in {
+    from {
+        opacity: 0;
+    }
 }
 
 .lead {
@@ -37,5 +53,50 @@
     @include mobile {
         display: grid;
         justify-content: stretch;
+    }
+}
+
+/* スクロール誘導。押せない飾りにする */
+.scroll {
+    grid-row: 3;
+    align-self: end;
+    justify-self: center;
+    display: grid;
+    justify-items: center;
+    gap: var(--space-2xs);
+    padding-bottom: var(--space-sm);
+    font-family: var(--font-en);
+    font-size: var(--fs-xs);
+    line-height: 1;
+    color: var(--color-text-sub);
+}
+
+.scrollLine {
+    position: relative;
+    width: var(--border);
+    height: var(--space-lg);
+    overflow: hidden;
+    background-color: color-mix(in srgb, var(--color-text) 20%, transparent);
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-color: var(--color-text);
+        animation: scroll-line 2s ease-in-out infinite;
+
+        @media (prefers-reduced-motion: reduce) {
+            animation: none;
+        }
+    }
+}
+
+@keyframes scroll-line {
+    from {
+        translate: 0 -100%;
+    }
+
+    to {
+        translate: 0 100%;
     }
 }
