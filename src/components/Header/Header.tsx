@@ -2,9 +2,10 @@
 
 import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { flushSync } from "react-dom";
-import Link from "next/link"
+import HashLink from "@/components/HashLink/HashLink";
 import { useRouter } from "next/navigation";
 import styles from "./Header.module.scss"
+import { scrollToHash } from "@/lib/scrollToHash";
 
 const navItems = [
     { label: "Works", href: "/#works"},
@@ -35,7 +36,7 @@ export default function Header() {
         flushSync(() => setIsOpen(false));
         const animations = menuRef.current?.getAnimations() ?? [];
         await Promise.allSettled(animations.map((animation) => animation.finished));
-        router.push(href);
+        if (!scrollToHash(href)) router.push(href);
     }
 
     useEffect(() => {
@@ -78,9 +79,9 @@ export default function Header() {
     return (
         <header className={styles.header}>
             <div className={styles.inner}>
-                <Link href="/" className={styles.logo} onClick={(e) => handleLinkClick(e, "/")}>
+                <HashLink href="/" className={styles.logo} onClick={(e) => handleLinkClick(e, "/")}>
                     Ishii Koichi
-                </Link>
+                </HashLink>
                 <button
                     ref={buttonRef}
                     type="button"
@@ -102,13 +103,13 @@ export default function Header() {
                     <ul className={styles.nav}>
                         {navItems.map((item) => (
                             <li key={item.href}>
-                                <Link
+                                <HashLink
                                     href={item.href}
                                     className={styles.navLink}
                                     onClick={(e) => handleLinkClick(e, item.href)}
                                 >
                                     {item.label}
-                                </Link>
+                                </HashLink>
                             </li>
                         ))}
                     </ul>

@@ -44,3 +44,8 @@ a {
     outline: 2px solid var(--color-emphasis);
     outline-offset: 2px;
 }
+
+/* scrollToHash でフォーカスを移したセクションは、全体を枠で囲まない */
+[tabindex="-1"]:focus-visible {
+  outline: none;
+}

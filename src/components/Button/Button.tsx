@@ -1,5 +1,5 @@
-import Link from "next/link";
 import type { ReactNode } from "react";
+import HashLink from "../HashLink/HashLink";
 import styles from "./Button.module.scss";
 
 type ButtonProps = {
@@ -28,10 +28,10 @@ export default function Button({
 
     if (href) {
         return (
-            <Link href={href} className={className}>
+            <HashLink href={href} className={className}>
                 {children}
                 <Arrow />
-            </Link>
+            </HashLink>
         );
     }
 
