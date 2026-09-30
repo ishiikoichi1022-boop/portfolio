@@ -39,7 +39,7 @@
     --width-content: 54rem;
     --width-text: 40rem;
     --width-gutter: 1.25rem;
-    --height-header: 2.6rem;
+    --height-header: max(2.6rem, 52px);
 
     /* === px固定 === */
     --radius: 5px;

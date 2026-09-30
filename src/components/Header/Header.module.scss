@@ -1,4 +1,5 @@
 @use "mixin" as *;
+@use "breakpoints" as *;
 
 .header {
     position: sticky;
@@ -22,13 +23,119 @@
     line-height: 1;
 }
 
+/* MENU / CLOSE ボタン。モバイルでだけ表示する */
+.menuButton {
+    display: none;
+
+    @include mobile {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2xs);
+        min-height: var(--tap-min);
+        /* 見た目の右端は本文にそろえたまま、押せる範囲だけ外側へ広げる */
+        padding-inline: var(--space-2xs);
+        margin-right: calc(var(--space-2xs) * -1);
+        border: 0;
+        background: none;
+        color: inherit;
+        font-family: var(--font-en);
+        font-size: var(--fs-xs);
+        line-height: 1;
+        cursor: pointer;
+    }
+}
+
+.menuIcon {
+    position: relative;
+    width: 20px;
+    height: 2px;
+    background-color: currentColor;
+    transition: background-color var(--duration);
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: currentColor;
+        transition: 
+            translate var(--duration) var(--ease),
+            rotate var(--duration) var(--ease);
+    }
+
+    &::before {
+        top: -6px;
+    }
+
+    &::after {
+        top: 6px;
+    }
+
+    /* 開いている間は x にする */
+    [aria-expanded="true"] > & {
+        background-color: transparent;
+
+        &::before {
+            translate: 0 6px;
+            rotate: 45deg;
+        }
+
+        &::after {
+            translate: 0 -6px;
+            rotate: -45deg;
+        }
+    }
+}
+
+.menu {
+    @include mobile {
+        position: fixed;
+        inset: calc(var(--height-header) + var(--border)) 0 0;
+        overflow-y: auto;
+        padding: var(--space-lg) var(--width-gutter);
+        background-color: var(--color-bg);
+        visibility: hidden;
+        opacity: 0;
+        /* visibility も遷移させると、閉じるときはフェードが終わるまで見えたままになる */
+        transition: 
+            opacity var(--duration) var(--ease),
+            visibility 0s var(--duration);
+
+        &[data-open="true"] {
+            visibility: visible;
+            opacity: 1;
+            transition-delay: 0s;
+        }
+    }
+}
+
 .nav {
     display: flex;
     gap: var(--space-xs);
     list-style: none;
+
+    @include mobile {
+        flex-direction: column;
+        translate: 0 calc(var(--space-2xs) * -1);
+        transition: translate var(--duration) var(--ease);
+        
+        [data-open="true"] > & {
+            translate: 0;
+        };
+    }
 }
 
 .navLink {
     font-family: var(--font-en);
     font-size: var(--fs-sm);
+
+    
+    @include mobile {
+        display: flex;
+        align-items: center;
+        min-height: var(--tap-min);
+        font-size: var(--fs-lg);
+    }
 }
