@@ -6,6 +6,7 @@ import HashLink from "@/components/HashLink/HashLink";
 import { useRouter } from "next/navigation";
 import styles from "./Header.module.scss"
 import { scrollToHash } from "@/lib/scrollToHash";
+import { DESKTOP_QUERY } from "@/lib/breakpoints";
 
 const navItems = [
     { label: "Works", href: "/#works"},
@@ -14,9 +15,6 @@ const navItems = [
 ];
 
 const MENU_ID = "site-menu";
-
-/** breakpoints.scssの$mobile(767px)と合わせる */
-const DESKTOP_QUERY = "(min-width: 768px)"
 
 export default function Header() {
     const [isOpen, setIsOpen] = useState(false);
