@@ -2,6 +2,7 @@
 
 import { useRef, type ReactNode } from "react";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
+import { scrollToHash } from "@/lib/scrollToHash";
 
 type WorksListProps = {
     className?: string;
@@ -23,8 +24,31 @@ export default function WorksList({ className, children }: WorksListProps) {
 
     useGSAP(() => {
         const mm = gsap.matchMedia();
+        /**
+         * /#contact などで開かれたときのとび先。ピン止めの余白で Works より下の位置がずれるため
+         * ピン留めの位置が決まった時点で一度だけ合わせなおす
+         */
+        let pendingHash = window.location.hash;
+        /**
+         * 画面の回転などで条件が切り替わり、ピン留めを外したり付け直したりすると、
+         * ScrollTrigger が一の計算のためにページの先頭までスクロールしたまま戻らない
+         * 切り替わる直前で位置を覚えておき、計算が終わったら（refresh）そこへ戻す
+         */
+        let isFirstRun = true;
+        let restoreY: number | null = null;
+
+        function restoreScroll() {
+            if (restoreY === null) return;
+            window.scrollTo(0, restoreY);
+            restoreY = null;
+        }
+        ScrollTrigger.addEventListener("refresh", restoreScroll)
 
         mm.add(PIN_QUERY, () => {
+            /** 付け直すとき（2回目以降）は、条件が外れた時の関数が呼ばれないので、ここで覚える */
+            if (!isFirstRun) restoreY = window.scrollY;
+            isFirstRun = false;
+
             const list = listRef.current;
             const items = gsap.utils.toArray<HTMLElement>(list?.children ?? []);
             if (!list || items.length < 2) return;
@@ -60,7 +84,11 @@ export default function WorksList({ className, children }: WorksListProps) {
                 /** 作品の並びの中心が、ヘッダーより下の見えている範囲の中心に来たら止める */
                 start: () => `center ${headerHeight() + (window.innerHeight - headerHeight()) / 2}px`,
                 end: () => `+=${items.length * SCROLL_PER_WORK * window.innerHeight}`,
-                invalidateOnRefresh: true,
+                onRefresh: () => {
+                    if (!pendingHash) return;
+                    scrollToHash(pendingHash);
+                    pendingHash = "";
+                },
                 onUpdate: (self) => {
                     const next = Math.min(items.length - 1, Math.floor(self.progress * items.length));
                     if (next !== active) show(next);
@@ -78,11 +106,15 @@ export default function WorksList({ className, children }: WorksListProps) {
             list.addEventListener("focusin", handleFocusIn);
 
             return () => {
+                restoreY = window.scrollY;
                 list.removeEventListener("focusin", handleFocusIn);
                 delete list.dataset.pinned;
                 for (const item of items) delete item.dataset.active;
             };
         });
+
+        return () => ScrollTrigger.removeEventListener("refresh", restoreScroll);
+        
     }, {scope: listRef });
 
     return (
