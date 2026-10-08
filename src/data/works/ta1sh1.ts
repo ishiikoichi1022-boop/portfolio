@@ -7,12 +7,20 @@ export const ta1sh1: Work = {
     tags: ["WordPress", "ACF", "JavaScript", "Sass"],
     role: "ヒアリング・設計・デザイン・実装",
     period: "2026年8月~2026年9月",
+    image: {
+        src: "/works/ta1sh1/main.png",
+        alt: "TA1SH1 ホームページのトップ"
+    },
     challenge: "（仮）ここに課題・目的が入ります。",
     approach: [
         {
             layout: "side",
             heading: "（仮）見出し1",
             body: "（仮）ここに本文が入ります。",
+            image: {
+                src: "/works/ta1sh1/approach-1.png",
+                alt: "依頼点数を3にして入力欄が3点分に増えた依頼フォーム"
+            },
         },
         {
             layout: "below",
@@ -23,6 +31,10 @@ export const ta1sh1: Work = {
             layout: "side",
             heading: "（仮）見出し3",
             body: "（仮）ここに本文が入ります。",
+            image: {
+                src: "/works/ta1sh1/approach-3.png",
+                alt: "縦長と横長のイラストが隙間なく並んだギャラリー",
+            }
         },
     ],
     implementation: {

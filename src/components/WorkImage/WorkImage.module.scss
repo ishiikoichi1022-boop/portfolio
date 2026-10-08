@@ -1,0 +1,11 @@
+/* next/image の fill は、親要素に position の指定が必要 */
+.frame {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background-color: var(--color-bg-sub);
+}
+
+.image {
+    object-fit: cover;
+}

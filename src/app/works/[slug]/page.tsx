@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { JetBrains_Mono } from "next/font/google";
 import Button from "@/components/Button/Button";
 import ButtonGroup from "@/components/ButtonGroup/ButtonGroup";
 import { getNextWork, getWork, works } from "@/data/works";
-import { JetBrains_Mono } from "next/font/google";
 import BlockHeading from "@/components/BlockHeading/BlockHeading";
+import WorkImage from "@/components/WorkImage/WorkImage";
 import ApproachRow from "./_components/ApproachRow";
 import styles from "./page.module.scss";
 
@@ -76,8 +77,12 @@ export default async function WorkPage(props: PageProps<"/works/[slug]">) {
                     </dl>
                 </header>
 
-                {/** 実画像は 10/10 に next/image へ差し替える */}
-                <div className={styles.mainImage} aria-hidden="true" />
+                <WorkImage
+                    image={work.image}
+                    variant="full"
+                    eager
+                    className={styles.mainImage}
+                />
 
                 <section className={styles.block}>
                     <BlockHeading en="Challenge" ja="課題・目的" />

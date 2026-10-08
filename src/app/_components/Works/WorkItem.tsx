@@ -2,6 +2,7 @@ import Tag from "@/components/Tag/Tag";
 import TextLink from "@/components/TextLink/TextLink";
 import type { Work } from "@/data/works/type";
 import WorkCount from "./WorkCount";
+import WorkImage from "@/components/WorkImage/WorkImage"
 import styles from "./WorkItem.module.scss";
 
 type WorkItemProps= {
@@ -14,7 +15,7 @@ type WorkItemProps= {
 export default function WorkItem({ work, index, total }: WorkItemProps) {
     return (
         <article className={styles.item}>
-            <div className={styles.image} aria-hidden="true" />
+            <WorkImage image={work.image} variant="card" />
 
             <div className={styles.body}>
                 <WorkCount index={index} total={total} className={styles.count} />

@@ -1,4 +1,5 @@
 import type { ApproachItem } from "@/data/works";
+import WorkImage from "@/components/WorkImage/WorkImage"
 import styles from "./ApproachRow.module.scss";
 
 export default function ApproachRow({ item }: { item: ApproachItem}) {
@@ -10,11 +11,12 @@ export default function ApproachRow({ item }: { item: ApproachItem}) {
                     <h3 className={styles.heading}>{item.heading}</h3>
                     <p className={styles.body}>{item.body}</p>
                 </div>
-                <div className={styles.image} aria-hidden="true" />
+                <WorkImage image={item.image} variant="side" />
             </div>
         );
     }
 
+    /** パターンB：本文上・画像2枚下 */
     return (
         <div className={styles.row}>
             <div>
@@ -22,8 +24,8 @@ export default function ApproachRow({ item }: { item: ApproachItem}) {
                 <p className={styles.body}>{item.body}</p>
             </div>
             <div className={styles.images}>
-                <div className={styles.image} aria-hidden="true" />
-                <div className={styles.image} aria-hidden="true" />
+                <WorkImage image={item.images?.[0]} variant="half" />
+                <WorkImage image={item.images?.[1]} variant="half" />
             </div>
         </div>
     )
