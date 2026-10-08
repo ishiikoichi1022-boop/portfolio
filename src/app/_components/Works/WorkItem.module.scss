@@ -1,4 +1,5 @@
 @use "breakpoints" as *;
+@use "mixin" as *;
 
 .item {
     display: grid;
@@ -23,19 +24,6 @@
     gap: var(--space-xs);
 }
 
-.count {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2xs);
-    font-family: var(--font-en);
-    font-size: var(--fs-sm);
-    font-weight: 500;
-}
-
-.countLabel {
-    font-size: var(--fs-md);
-}
-
 .title {
     font-family: var(--font-en);
     font-size: var(--fs-xl);
@@ -48,4 +36,12 @@
     flex-wrap: wrap;
     gap: var(--space-2xs);
     list-style: none;
+}
+
+/* ピン留め中は作品ごとの件数表示を見た目だけ隠し、共通の件数表示（WorksList）に任せる
+    読み上げでは作品ごとの件数表示をそのまま読む */
+.count {
+    :global([data-pinned]) & {
+        @include visually-hidden;
+    }
 }

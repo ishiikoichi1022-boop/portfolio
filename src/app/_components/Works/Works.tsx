@@ -11,7 +11,7 @@ export default function Works() {
                 <SectionHeading number="01">Works</SectionHeading>
                 <p className={styles.lead}>私が個人で制作した作品一覧です。</p>
             </div>
-            <WorksList className={styles.list}>
+            <WorksList className={styles.list} total={works.length}>
                 {works.map((work, index) => (
                     <WorkItem key={work.slug} work={work} index={index} total={works.length} />
                 ))}

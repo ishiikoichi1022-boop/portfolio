@@ -1,0 +1,12 @@
+@use "mixin" as *;
+
+/* ピン留め中だけ表示する共通の件数表示。作品の並びの左上に置く */
+.indicator {
+    @include container;
+    display: none;
+    margin-bottom: var(--space-sm);
+}
+
+.root[data-pinned] > .indicator {
+    display: block;
+}

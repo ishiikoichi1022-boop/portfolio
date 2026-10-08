@@ -1,11 +1,16 @@
 "use client";
 
-import { useRef, type ReactNode } from "react";
+import { useRef, useState, type ReactNode } from "react";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 import { scrollToHash } from "@/lib/scrollToHash";
 
+import WorkCount from "./WorkCount";
+import styles from "./WorksList.module.scss"
+
 type WorksListProps = {
     className?: string;
+    /** 作品の数（ピン留め中の件数表示に使う） */
+    total: number;
     children: ReactNode;
 }
 
@@ -19,8 +24,11 @@ const SCROLL_PER_WORK = 0.8;
 const PIN_QUERY = "(prefers-reduced-motion: no-preference) and (min-height: 600px)";
 
 /** 作品の並び。演出にJSが必要になるのでここだけクライアントにし、作品の中身はサーバーで組み込む */
-export default function WorksList({ className, children }: WorksListProps) {
+export default function WorksList({ className, total,  children }: WorksListProps) {
+    const rootRef = useRef<HTMLDivElement>(null);
     const listRef = useRef<HTMLDivElement>(null);
+    /** ピン留め中に表示している作品の番号（0始まり）。共通の件数表示の数字だけを、これで差し替える*/
+    const [activeIndex, setActiveIndex] = useState(0);
 
     useGSAP(() => {
         const mm = gsap.matchMedia();
@@ -49,12 +57,13 @@ export default function WorksList({ className, children }: WorksListProps) {
             if (!isFirstRun) restoreY = window.scrollY;
             isFirstRun = false;
 
+            const root = rootRef.current;
             const list = listRef.current;
             const items = gsap.utils.toArray<HTMLElement>(list?.children ?? []);
-            if (!list || items.length < 2) return;
+            if (!root || !list || items.length < 2) return;
 
             /** 作品を同じ場所に重ね、表示中の1件にだけ印をつける（見た目は Works.module.scss） */
-            list.dataset.pinned = "";
+            root.dataset.pinned = "";
             items[0].dataset.active = "";
             gsap.set(items.slice(1).flatMap((item) => [...item.children]), { opacity: 0 });
 
@@ -66,6 +75,7 @@ export default function WorksList({ className, children }: WorksListProps) {
                 delete items[active].dataset.active;
                 items[next].dataset.active = "";
                 active = next;
+                setActiveIndex(next);
 
                 gsap.timeline({ defaults: {duration: 0.5, ease: "power2.out", overwrite: "auto"} })
                 /** 表示中の作品は先に消す */
@@ -79,7 +89,7 @@ export default function WorksList({ className, children }: WorksListProps) {
             const headerHeight = () => document.querySelector("header")?.offsetHeight ?? 0;
 
             const trigger = ScrollTrigger.create({
-                trigger: list,
+                trigger: root,
                 pin: true,
                 /** 作品の並びの中心が、ヘッダーより下の見えている範囲の中心に来たら止める */
                 start: () => `center ${headerHeight() + (window.innerHeight - headerHeight()) / 2}px`,
@@ -108,18 +118,25 @@ export default function WorksList({ className, children }: WorksListProps) {
             return () => {
                 restoreY = window.scrollY;
                 list.removeEventListener("focusin", handleFocusIn);
-                delete list.dataset.pinned;
+                delete root.dataset.pinned;
+                setActiveIndex(0);
                 for (const item of items) delete item.dataset.active;
             };
         });
 
         return () => ScrollTrigger.removeEventListener("refresh", restoreScroll);
-        
-    }, {scope: listRef });
+
+    }, {scope: rootRef });
 
     return (
-        <div ref={listRef} className={className}>
-            {children}
+        <div ref={rootRef} className={styles.root}>
+            {/* ピン留め中だけ表示する共通の件数表示。読み上げは作品ごとの件数表示に任せる */}
+            <div className={styles.indicator} aria-hidden="true">
+                <WorkCount index={activeIndex} total={total} />
+            </div>
+            <div ref={listRef} className={className}>
+                {children}
+            </div>
         </div>
     )
 }

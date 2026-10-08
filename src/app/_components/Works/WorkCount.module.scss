@@ -1,0 +1,12 @@
+.count {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    font-family: var(--font-en);
+    font-size: var(--fs-sm);
+    font-weight: 500;
+}
+
+.countLabel {
+    font-size: var(--fs-md);
+}

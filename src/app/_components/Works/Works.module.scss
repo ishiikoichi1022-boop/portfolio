@@ -22,7 +22,7 @@
 
     /* ピン留め中（WorksList が data-pinned を付ける）は、作品を同じ場所に重ねる。
     　　上端をそろえて、切り替わっても画像の位置が動かないようにする */
-    &[data-pinned] {
+    :global([data-pinned]) > & {
         align-items: start;
 
         > * {
