@@ -23,11 +23,16 @@
 }
 
 .heading {
-    font-size: var(--fs-md);
+    font-size: var(--fs-ml);
     font-weight: 500;
+    line-height: var(--lh-heading);
+    /* スマホで折り返すとき、言葉の途中で切らず、2行の長さをそろえる */
+    word-break: auto-phrase;
+    text-wrap: balance;
 }
 
 .body {
+    padding-top: var(--space-2xs);
     max-width: var(--width-text);
 }
 
