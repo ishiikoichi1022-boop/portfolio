@@ -26,7 +26,7 @@ export const ta1sh1: Work = {
         {
             layout: "below",
             heading: "別名義にも流用できるテーマ設計",
-            body: "Customizerで選んだ3色をCSS変数として出力し、サイト全体の配色がその変数に従うようにしました。半透明の線やぼかしも、選んだ色に合わせて変わります。名義やSNSのURLもCustomizerで変えられるため、別の名義のサイトにもそのまま使えます。",
+            body: "Customizerで選んだ4色をCSS変数として出力し、サイト全体の配色がその変数に従うようにしました。半透明の線やぼかしも、選んだ色に合わせて変わります。名義やSNSのURLもCustomizerで変えられるため、別の名義のサイトにもそのまま使えます。",
             images: [
                 {
                     src: "/works/ta1sh1/approach-2-default.png",
@@ -49,7 +49,31 @@ export const ta1sh1: Work = {
         },
     ],
     implementation: {
-        code: "（仮）ここに functions.php の抜粋が入ります。横スクロールを確認するための、とても長い行です。とても長い行です。とても長い行です。", /** （仮）ここに実装コードが入ります。 */
-        caption: "（仮）ここにキャプションが入ります。", /** （仮）ここにキャプションが入ります。 */
+        code: `function portfolio_output_theme_colors()
+{
+    $base_color = sanitize_hex_color(get_theme_mod('color-base', '#0b0c13')) ?: '#0b0c13';
+    $main_color = sanitize_hex_color(get_theme_mod('color-main', '#FFFFEB')) ?: '#FFFFEB';
+    $title_color = sanitize_hex_color(get_theme_mod('color-title', '#FFFFEB')) ?: '#FFFFEB';
+    $accent_color = sanitize_hex_color(get_theme_mod('color-accent', '#F0422E')) ?: '#F0422E';
+
+    // rgba()でCustomizerの色を使うためのRGBチャンネル値
+    // （rgba()にvar()で16進数カラーをまるごと渡すことはできないため、チャンネル分解した値を別変数として渡す）
+    $base_rgb = portfolio_hex_to_rgb($base_color);
+    $main_rgb = portfolio_hex_to_rgb($main_color);
+    $accent_rgb = portfolio_hex_to_rgb($accent_color);
+
+    echo "<style id='theme-colors' type='text/css'>
+        :root {
+            --color-base: {$base_color};
+            --color-main: {$main_color};
+            --color-title: {$title_color};
+            --color-accent: {$accent_color};
+            --color-base-rgb: {$base_rgb};
+            --color-main-rgb: {$main_rgb};
+            --color-accent-rgb: {$accent_rgb};
+        }
+    </style>";
+}`,
+        caption: "Customizerで選んだ色をwp_headで:rootのCSS変数として出力することで、サイト全体の配色を管理するようにしました。また、値が空や不正なときは、既定の色に戻して出力しています。さらに、不透明度の変更を行うため、RGBに変換したCSS変数も出力をしています。",
     },
 };
