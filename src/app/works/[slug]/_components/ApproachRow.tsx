@@ -24,8 +24,8 @@ export default function ApproachRow({ item }: { item: ApproachItem}) {
                 <p className={styles.body}>{item.body}</p>
             </div>
             <div className={styles.images}>
-                <WorkImage image={item.images?.[0]} variant="half" />
-                <WorkImage image={item.images?.[1]} variant="half" />
+                <WorkImage image={item.images[0]} variant="half" />
+                <WorkImage image={item.images[1]} variant="half" />
             </div>
         </div>
     )

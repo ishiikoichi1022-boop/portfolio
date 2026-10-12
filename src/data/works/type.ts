@@ -10,14 +10,14 @@ export type ApproachItem =
     layout: "side";
     heading: string;
     body: string;
-    image?: WorkImage;
+    image: WorkImage;
 }
 | {
     /** パターンB: 本文上・画像下 */
     layout: "below";
     heading: string;
     body: string;
-    images?: [WorkImage, WorkImage];
+    images: [WorkImage, WorkImage];
 };
 
 export type Work = {
@@ -34,7 +34,7 @@ export type Work = {
     /** サイトURL */
     url?: string;
     /** Homeの作品画像と、詳細ページのファーストビューを兼ねる */
-    image?: WorkImage;
+    image: WorkImage;
     challenge: string;
     approach: ApproachItem[];
     implementation: {

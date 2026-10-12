@@ -19,7 +19,7 @@ const SIZES = {
 } as const;
 
 type WorkImageProps = {
-    image?: WorkImageData;
+    image: WorkImageData;
     /** 画面上で表示される幅の目安。ブラウザが読み込む画像の大きさを選ぶのに使う */
     variant: keyof typeof SIZES;
     /** 画面を開いた直後に見える画像だけ true にする（遅延読み込みをやめる） */
@@ -27,20 +27,18 @@ type WorkImageProps = {
     className?: string;
 };
 
-/** 作品の画像（16:10）。画像がまだないときは、同じ大きさの下地だけを表示する */
+/** 作品の画像（16:10）*/
 export default function WorkImage({ image, variant, eager = false, className}: WorkImageProps) {
     return (
         <div className={`${styles.frame} ${className ?? ""}`}>
-            { image && (
-                <Image 
-                    src={image.src}
-                    alt={image.alt}
-                    fill
-                    sizes={SIZES[variant]}
-                    loading={eager ? "eager" : "lazy"}
-                    className={styles.image}
-                />
-            )}
+            <Image 
+                src={image.src}
+                alt={image.alt}
+                fill
+                sizes={SIZES[variant]}
+                loading={eager ? "eager" : "lazy"}
+                className={styles.image}
+            />
         </div>
     );
 }
