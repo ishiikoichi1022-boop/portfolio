@@ -31,7 +31,7 @@ type WorkImageProps = {
 export default function WorkImage({ image, variant, eager = false, className}: WorkImageProps) {
     return (
         <div className={`${styles.frame} ${className ?? ""}`}>
-            <Image 
+            <Image
                 src={image.src}
                 alt={image.alt}
                 fill
