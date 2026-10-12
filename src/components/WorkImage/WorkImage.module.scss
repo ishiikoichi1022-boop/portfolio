@@ -3,7 +3,19 @@
     position: relative;
     aspect-ratio: 16 / 10;
     overflow: hidden;
+    border-radius: var(--radius);
     background-color: var(--color-bg-sub);
+
+    /* 背景がページと同じ色の画像でも、画像の範囲がわかるように線で囲む。
+    　　画像の上に重ねて描くので、画像に隠れず、大きさも変わらない */
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border: var(--border) solid color-mix(in srgb, var(--color-text) 20%, transparent);
+        border-radius: inherit;
+        pointer-events: none;
+    }
 }
 
 .image {
