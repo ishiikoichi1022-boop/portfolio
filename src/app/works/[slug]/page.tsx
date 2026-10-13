@@ -7,6 +7,7 @@ import { getNextWork, getWork, works } from "@/data/works";
 import BlockHeading from "@/components/BlockHeading/BlockHeading";
 import WorkImage from "@/components/WorkImage/WorkImage";
 import ApproachRow from "./_components/ApproachRow";
+import { baseOpenGraph } from "@/app/shared-metadata";
 import styles from "./page.module.scss";
 
 /** コードブロック専用。このページでしか使わない */
@@ -29,11 +30,19 @@ export async function generateMetadata(
 ): Promise<Metadata> {
     const { slug } = await props.params;
     const work = getWork(slug);
+
     if (!work) return {};
+    const title = `${work.title} | Ishii Koichi`;
 
     return {
-        title: `${work.title} | Ishii Koichi`,
+        title,
         description: work.summary,
+        openGraph: {
+            ...baseOpenGraph,
+            title,
+            description: work.summary,
+            url: `/works/${work.slug}/`,
+        }
     };
 }
 

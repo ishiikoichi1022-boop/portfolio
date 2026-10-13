@@ -2,7 +2,7 @@ import type { Work } from "./type";
 
 export const portfolio: Work = {
     slug: "portfolio",
-    title: "Ishii Koichi Portfolio",
+    title: "Portfolio",
     summary: "石井幸一のポートフォリオ（このサイト）です。企画・設計・デザイン・実装を一人で担当しました。Next.jsとTypeScriptで制作しています。",
     tags: ["Next.js", "TypeScript", "Sass", "GSAP"],
     role: "企画・設計・デザイン・実装",

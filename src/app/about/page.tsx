@@ -3,11 +3,16 @@ import BlockHeading from "@/components/BlockHeading/BlockHeading";
 import Button from "@/components/Button/Button"
 import ButtonGroup from "@/components/ButtonGroup/ButtonGroup";
 import { interests, skills, story, values } from "@/data/about";
+import { baseOpenGraph } from "../shared-metadata";
 import styles from "./page.module.scss";
 
+const title = "About | Ishii Koichi";
+const description = "SESでのサポート業務を経て、「自分の手でつくる側に回りたい」とWeb制作の道へ。個人でサイトを制作・納品しながら、フロントエンドエンジニアを目指して学び続けています。";
+
 export const metadata: Metadata = {
-    title: "About | Ishii Koichi",
-    description: "SESでのサポート業務を経て、「自分の手でつくる側に回りたい」とWeb制作の道へ。個人でサイトを制作・納品しながら、フロントエンドエンジニアを目指して学び続けています。",
+    title,
+    description,
+    openGraph: { ...baseOpenGraph, title, description, url: "/about/" },
 }
 
 export default function AboutPage() {
