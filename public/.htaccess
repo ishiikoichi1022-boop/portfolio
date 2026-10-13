@@ -1,5 +1,5 @@
 # ページが見つからないときは、Next.jsが書き出した404ページを表示する
-ErrorDocument 404/404.html
+ErrorDocument 404 /404.html
 
 # portfolio.formkite.net以外の名前（formkite.net/portfolio.formkite.net/ 等）で開かれたら同じページの正しいURLへ移動させる
 RewriteEngine On
