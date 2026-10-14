@@ -39,7 +39,7 @@ export default function WorksList({ className, total,  children }: WorksListProp
         let pendingHash = window.location.hash;
         /**
          * 画面の回転などで条件が切り替わり、ピン留めを外したり付け直したりすると、
-         * ScrollTrigger が一の計算のためにページの先頭までスクロールしたまま戻らない
+         * ScrollTrigger が位置の計算のためにページの先頭までスクロールしたまま戻らない
          * 切り替わる直前で位置を覚えておき、計算が終わったら（refresh）そこへ戻す
          */
         let isFirstRun = true;
@@ -47,7 +47,7 @@ export default function WorksList({ className, total,  children }: WorksListProp
 
         function restoreScroll() {
             if (restoreY === null) return;
-            window.scrollTo(0, restoreY);
+            window.scrollTo(0, restoreY);　
             restoreY = null;
         }
         ScrollTrigger.addEventListener("refresh", restoreScroll)
