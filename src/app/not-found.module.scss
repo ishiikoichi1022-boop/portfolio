@@ -1,0 +1,22 @@
+@use "mixin" as *;
+
+.main {
+    @include container;
+    padding-top: var(--space-2xl);
+}
+
+.title {
+    font-family: var(--font-en);
+    font-size: var(--fs-xl);
+    line-height: var(--lh-heading);
+    font-weight: 500;
+}
+
+.text {
+    padding-top: var(--space-2xs);
+    max-width: var(--width-text);
+}
+
+.nav {
+    padding-top: var(--space-lg);
+}
