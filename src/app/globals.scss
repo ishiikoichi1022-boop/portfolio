@@ -25,6 +25,11 @@ body {
   line-height: var(--lh-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* 中身が短いページでも、フッターを画面の下端に置く（ヘッダー・中身・フッターの3行のうち、中身の行を伸ばす） */
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: minmax(0, 1fr);
+  min-height: 100dvh;
 }
 
 img,
