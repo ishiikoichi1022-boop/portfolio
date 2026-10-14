@@ -19,7 +19,10 @@ export type Skill = {
 export const skills: Skill[] = [
     { category: "マークアップ", details: "HTML / CSS / Sass", level: "複数案件で使用" },
     { category: "JavaScript", details: "DOM操作・フォーム制御 / masonry / swiper", level: "複数案件で使用" },
+    { category: "Next.js", details: "React / TypeScript / CSS Modules", level: "個人制作で使用" },
+    { category: "アニメーション", details: "GSAP / ScrollTrigger", level: "個人制作で使用" },
     { category: "WordPress", details: "ACF / Contact Form 7 / テーマ自作", level: "受注案件で使用" },
+    { category: "バージョン管理", details: "Git / GitHub", level: "個人制作で使用" },
     { category: "デザイン・設計", details: "Figma", level: "複数案件で使用"},
 ];
 
