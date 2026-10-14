@@ -47,7 +47,7 @@ export default function WorksList({ className, total,  children }: WorksListProp
 
         function restoreScroll() {
             if (restoreY === null) return;
-            window.scrollTo(0, restoreY);　
+            window.scrollTo(0, restoreY);
             restoreY = null;
         }
         ScrollTrigger.addEventListener("refresh", restoreScroll)
