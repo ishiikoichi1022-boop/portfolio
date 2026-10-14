@@ -31,6 +31,10 @@ export const portfolio: Work = {
                     src: "/works/portfolio/approach-2-default.webp",
                     alt: "ブラウザの文字サイズが標準のトップページ"
                 },
+                {
+                    src: "/works/portfolio/approach-2-large.webp",
+                    alt: "ブラウザの文字サイズを大にして、全体が拡大されたトップページ"
+                },
             ]
         },
         {
