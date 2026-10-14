@@ -13,6 +13,12 @@
     grid-row: 2;
 }
 
+.role {
+    margin-bottom: var(--space-md);
+    font-size: var(--fs-sm);
+    color: var(--color-text-sub);
+}
+
 .title {
     font-size: var(--fs-hero);
     line-height: var(--lh-hero);

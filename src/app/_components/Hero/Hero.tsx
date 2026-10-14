@@ -11,6 +11,7 @@ export default function Hero() {
     const leadRef = useRef<HTMLParagraphElement>(null);
     const actionsRef = useRef<HTMLDivElement>(null);
     const scrollRef = useRef<HTMLDivElement>(null);
+    const roleRef = useRef<HTMLParagraphElement>(null);
 
     useGSAP(() => {
         const mm = gsap.matchMedia();
@@ -29,7 +30,7 @@ export default function Hero() {
 
             /** サブコピーとボタンが先に薄くなる */
             .to(
-                [leadRef.current, actionsRef.current, scrollRef.current], { opacity: 0, duration: 0.6 }, 0)
+                [roleRef.current, leadRef.current, actionsRef.current, scrollRef.current], { opacity: 0, duration: 0.6 }, 0)
             /** メインコピーは半分まで残り、最後に上へ動きながら消える */
             .to(titleRef.current, { opacity: 0, y: -40, duration: 0.8 }, 0.2)
         });
@@ -38,6 +39,7 @@ export default function Hero() {
     return (
         <section ref={heroRef} className={styles.hero}>
             <div className={styles.inner}>
+                <p ref={roleRef} className={styles.role}>Web制作 / フロントエンドエンジニア志望</p>
                 <h1 ref={titleRef} className={styles.title}>
                     <span className={styles.line}>
                         誰かの「<em className={styles.emphasis}>こうしたい</em>」を、
