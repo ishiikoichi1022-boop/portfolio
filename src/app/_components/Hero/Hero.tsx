@@ -28,7 +28,7 @@ export default function Hero() {
                 },
             })
 
-            /** サブコピーとボタンが先に薄くなる */
+            /** ラベル・サブコピー・ボタンが先に薄くなる */
             .to(
                 [roleRef.current, leadRef.current, actionsRef.current, scrollRef.current], { opacity: 0, duration: 0.6 }, 0)
             /** メインコピーは半分まで残り、最後に上へ動きながら消える */
