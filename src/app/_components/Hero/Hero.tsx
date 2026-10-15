@@ -23,7 +23,8 @@ export default function Hero() {
                 scrollTrigger: {
                     start: 0,
                     end: () => 
-                        (titleRef.current?.offsetTop ?? 0) - (document.querySelector("header")?.offsetHeight ?? 0),
+                        window.innerHeight * 0.7,
+                        // (titleRef.current?.offsetTop ?? 0) - (document.querySelector("header")?.offsetHeight ?? 0),
                     scrub: true,
                 },
             })
