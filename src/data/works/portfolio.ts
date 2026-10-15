@@ -46,6 +46,15 @@ export const portfolio: Work = {
                 alt: "VS Codeの型エラー。imagesに画像が1枚しかなく、「ソースには 1 個の要素が含まれていますが、ターゲットには 2 個が必要です。」と表示されている"
             }
         },
+        {
+            layout: "side",
+            heading: "AI (Claude Code) との役割分担と検証",
+            body: "TODO: 本文を書く",
+            image: {
+                src: "/works/portfolio/main.webp",
+                alt: "TODO: 画像を決めたら差し替える"
+            }
+        },
     ],
     implementation: {
         code: `/** 透明な作品のリンクへ Tab で進んだら、その作品が表示される位置までスクロールする */
