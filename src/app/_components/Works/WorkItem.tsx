@@ -28,7 +28,10 @@ export default function WorkItem({ work, index, total }: WorkItemProps) {
                     ))}
                 </ul>
                 <p className={styles.summary}>{work.summary}</p>
-                <TextLink href={`/works/${work.slug}`}>詳しく見る</TextLink>
+                <TextLink href={`/works/${work.slug}`}>
+                    <span className={styles.visuallyHidden}>{work.title}を</span>
+                    詳しく見る
+                </TextLink>
             </div>
         </article>
     );

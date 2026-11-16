@@ -40,3 +40,7 @@
         @include visually-hidden;
     }
 }
+
+.visuallyHidden {
+    @include visually-hidden;
+}

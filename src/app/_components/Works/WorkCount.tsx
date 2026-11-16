@@ -13,8 +13,9 @@ const pad = (n: number) => String(n).padStart(2, "0");
 export default function WorkCount({ index, total, className}: WorkCountProps) {
     return (
         <p className={`${styles.count} ${className ?? ""}`}>
-            <span className={styles.countLabel}>works</span>
-            {pad(index + 1)} / {pad(total)}
+            <span className={styles.countLabel} aria-hidden="true">works</span>
+            <span aria-hidden="true">{pad(index + 1)} / {pad(total)}</span>
+            <span className={styles.visuallyHidden}>{total}件中{index + 1}件目</span>
         </p>
     )
 }
