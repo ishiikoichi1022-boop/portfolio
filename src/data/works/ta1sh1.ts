@@ -7,7 +7,7 @@ export const ta1sh1: Work = {
     tags: ["WordPress", "ACF", "JavaScript", "Sass"],
     role: "ヒアリング・設計・デザイン・実装",
     period: "2026年8月～2026年9月",
-    url: "https://formkite.net/ta1sh1-portfolio/",
+    url: "https://ta1sh1.net",
     image: {
         src: "/works/ta1sh1/main.webp",
         alt: "TA1SH1ホームページのトップ"
